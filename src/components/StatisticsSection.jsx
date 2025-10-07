@@ -1,4 +1,3 @@
-import React from 'react';
 import MoodLineChart from './MoodLineChart';
 import MoodPieChart from './MoodPieChart';
 

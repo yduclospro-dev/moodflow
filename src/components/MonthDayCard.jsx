@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday, isFuture, isEmpty }) {
   if (isEmpty) {
     return <div className="aspect-square"></div>;

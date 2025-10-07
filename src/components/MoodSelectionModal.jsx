@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import MoodButton from './MoodButton';
 import { MOODS } from '../constants/moods';

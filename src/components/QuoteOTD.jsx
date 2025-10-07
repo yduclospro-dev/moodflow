@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useMoodData } from '../hooks/useMoodData';
 import { quotes } from '../constants/quotes';
 

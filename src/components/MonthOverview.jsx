@@ -1,4 +1,3 @@
-import React from 'react';
 import MonthDayCard from './MonthDayCard';
 import { DAYS_SHORT } from '../constants/moods';
 import { formatDate, isFutureDate } from '../utils/dateUtils';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function MoodButton({ mood, isSelected, onSelect }) {
   const Icon = mood.icon;
   

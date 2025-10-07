@@ -1,4 +1,3 @@
-import React from 'react';
 import { Calendar, CalendarDays } from 'lucide-react';
 
 export default function ViewToggle({ currentView, onViewChange }) {

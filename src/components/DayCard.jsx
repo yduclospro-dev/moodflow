@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function DayCard({ day, date, mood, isSelected, onSelect, isToday, isFuture }) {
   return (
     <button
