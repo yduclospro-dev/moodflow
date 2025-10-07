@@ -81,11 +81,13 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
                 mood={mood}
                 isSelected={currentMood === mood.id}
                 onSelect={handleMoodClick}
+                immediateUpdate={true}
               />
             ))}
           </div>
         </div>
 
+        {/* Footer */}
         {/* Footer - Bouton supprimer */}
         {currentMood && (
           <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6">

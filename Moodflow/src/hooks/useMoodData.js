@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 export function useMoodData() {
   const [moods, setMoods] = useState({});
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Charger les données au montage du composant
@@ -38,5 +39,5 @@ export function useMoodData() {
     });
   };
 
-  return { moods, updateMood };
+  return { moods, updateMood, selectedDate, setSelectedDate };
 }
