@@ -5,7 +5,7 @@ import WeekNavigation from './components/WeekNavigation';
 import MonthNavigation from './components/MonthNavigation';
 import WeekOverview from './components/WeekOverview';
 import MonthOverview from './components/MonthOverview';
-import MoodSelectionPanel from './components/MoodSelectionPanel';
+import MoodSelectionModal from './components/MoodSelectionModal';
 import StatisticsSection from './components/StatisticsSection';
 import DarkModeToggle from './components/DarkModeToggle';
 import { useMoodData } from './hooks/useMoodData';
@@ -18,7 +18,8 @@ export default function App() {
   const { moods, updateMood } = useMoodData();
   const { isDark, toggle } = useDarkMode();
   const [selectedDate, setSelectedDate] = useState(null);
-  const [currentView, setCurrentView] = useState('week'); // 'week' ou 'month'
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('week');
   const [weekOffset, setWeekOffset] = useState(0);
   const [monthOffset, setMonthOffset] = useState(0);
 
@@ -27,42 +28,61 @@ export default function App() {
   const weekRange = getWeekRange(weekDates);
   const monthName = getMonthName(monthOffset);
 
+  const handleDaySelect = (dateKey) => {
+    if (dateKey) {
+      setSelectedDate(dateKey);
+      setIsModalOpen(true);
+    } else {
+      setSelectedDate(null);
+      setIsModalOpen(false);
+    }
+  };
+
   const handleMoodSelect = (dateKey, moodId) => {
     const date = new Date(dateKey);
     if (!isFutureDate(date)) {
       updateMood(dateKey, moodId);
+      setIsModalOpen(false);
       setSelectedDate(null);
     }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedDate(null);
   };
 
   const handleViewChange = (view) => {
     setCurrentView(view);
     setSelectedDate(null);
+    setIsModalOpen(false);
   };
 
-  // Navigation semaine
   const goToPreviousWeek = () => {
     setWeekOffset(prev => prev - 1);
     setSelectedDate(null);
+    setIsModalOpen(false);
   };
 
   const goToNextWeek = () => {
     if (weekOffset < 0) {
       setWeekOffset(prev => prev + 1);
       setSelectedDate(null);
+      setIsModalOpen(false);
     }
   };
 
-  // Navigation mois
   const goToPreviousMonth = () => {
     setMonthOffset(prev => prev - 1);
     setSelectedDate(null);
+    setIsModalOpen(false);
   };
 
   const goToNextMonth = () => {
     if (monthOffset < 0) {
       setMonthOffset(prev => prev + 1);
       setSelectedDate(null);
+      setIsModalOpen(false);
     }
   };
 
@@ -90,7 +110,7 @@ export default function App() {
               <WeekOverview 
                 moods={moods}
                 selectedDate={selectedDate}
-                onDaySelect={setSelectedDate}
+                onDaySelect={handleDaySelect}
                 getMoodById={getMoodById}
                 weekDates={weekDates}
               />
@@ -109,7 +129,7 @@ export default function App() {
               <MonthOverview 
                 moods={moods}
                 selectedDate={selectedDate}
-                onDaySelect={setSelectedDate}
+                onDaySelect={handleDaySelect}
                 getMoodById={getMoodById}
                 monthDates={monthDates}
               />
@@ -117,13 +137,13 @@ export default function App() {
           </>
         )}
 
-        <div className="px-4">
-          <MoodSelectionPanel
-            selectedDate={selectedDate}
-            currentMood={moods[selectedDate]}
-            onMoodSelect={handleMoodSelect}
-          />
-        </div>
+        <MoodSelectionModal
+          isOpen={isModalOpen}
+          selectedDate={selectedDate}
+          currentMood={moods[selectedDate]}
+          onMoodSelect={handleMoodSelect}
+          onClose={handleModalClose}
+        />
 
         <StatisticsSection
           chartData={getChartData(moods, currentDates, formatDate)}

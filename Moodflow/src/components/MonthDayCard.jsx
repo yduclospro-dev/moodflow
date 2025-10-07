@@ -11,7 +11,7 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
     <button
       onClick={onSelect}
       disabled={isFuture}
-      className={`aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 transform ${
+      className={`relative aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 transform ${
         isFuture 
           ? 'cursor-not-allowed opacity-40' 
           : 'active:scale-95 hover:shadow-md'
@@ -38,6 +38,9 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
           <div className="text-lg sm:text-2xl">{mood.emoji}</div>
         )}
       </div>
+      {isToday && (
+        <div className="absolute top-1 right-1 w-2 h-2 bg-pink-500 rounded-full"></div>
+      )}
     </button>
   );
 }
