@@ -69,17 +69,13 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
         {/* Body */}
         <div className="p-4 sm:p-6">
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
-            {MOODS.map((mood, index) => (
-              <div 
+            {MOODS.map(mood => (
+              <MoodButton
                 key={mood.id}
-                className={`${index === MOODS.length - 1 && MOODS.length % 2 !== 0 ? 'col-span-2 flex justify-center sm:col-span-1 sm:block' : ''}`}
-              >
-                <MoodButton
-                  mood={mood}
-                  isSelected={currentMood === mood.id}
-                  onSelect={handleMoodClick}
-                />
-              </div>
+                mood={mood}
+                isSelected={currentMood === mood.id}
+                onSelect={handleMoodClick}
+              />
             ))}
           </div>
         </div>
