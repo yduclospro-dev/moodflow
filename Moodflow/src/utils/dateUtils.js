@@ -24,19 +24,15 @@ export function getMonthDates(monthOffset = 0) {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   
-  // Obtenir le jour de la semaine du premier jour (0 = dimanche, 1 = lundi, etc.)
   let startDay = firstDay.getDay();
-  startDay = startDay === 0 ? 6 : startDay - 1; // Convertir pour que lundi = 0
+  startDay = startDay === 0 ? 6 : startDay - 1;
   
-  // Créer un tableau incluant les jours vides du début
   const dates = [];
   
-  // Ajouter les jours vides du mois précédent
   for (let i = 0; i < startDay; i++) {
     dates.push(null);
   }
   
-  // Ajouter tous les jours du mois
   for (let day = 1; day <= lastDay.getDate(); day++) {
     dates.push(new Date(year, month, day));
   }
@@ -52,7 +48,6 @@ export function getMonthName(monthOffset = 0) {
 
 export function formatDate(date) {
   if (!date) return null;
-  // Utiliser getFullYear, getMonth, getDate au lieu de toISOString pour éviter les problèmes de timezone
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -60,8 +55,9 @@ export function formatDate(date) {
 }
 
 export function formatDisplayDate(date) {
-  const options = { day: 'numeric', month: 'short' };
-  return date.toLocaleDateString('fr-FR', options);
+  const day = date.getDate();
+  const month = date.toLocaleDateString('fr-FR', { month: 'short' });
+  return { day, month };
 }
 
 export function getWeekRange(dates) {

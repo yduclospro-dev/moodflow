@@ -20,9 +20,10 @@ export default function DayCard({ day, date, mood, isSelected, onSelect, isToday
         backgroundImage: `linear-gradient(135deg, ${mood.color}15, ${mood.color}30)`
       } : {}}
     >
-      <div className="text-center">
-        <div className="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">{day}</div>
-        <div className="text-xs text-gray-500 dark:text-gray-400">{date}</div>
+      <div className="text-center py-1">
+        <div className="text-xs font-medium text-gray-600 dark:text-gray-300">{day}</div>
+        <div className="text-xs text-gray-500 dark:text-gray-400">{date.day}</div>
+        <div className="text-xs text-gray-500 dark:text-gray-400">{date.month}</div>
         {mood ? (
           <>
             <div className="text-2xl sm:text-3xl">{mood.emoji}</div>
