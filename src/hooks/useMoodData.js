@@ -5,7 +5,6 @@ export function useMoodData() {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Charger les données au montage du composant
   useEffect(() => {
     const saved = localStorage.getItem('moodTrackerData');
     if (saved) {
@@ -19,7 +18,6 @@ export function useMoodData() {
     setIsLoaded(true);
   }, []);
 
-  // Sauvegarder les données à chaque changement (mais pas au premier chargement)
   useEffect(() => {
     if (isLoaded) {
       localStorage.setItem('moodTrackerData', JSON.stringify(moods));

@@ -1,6 +1,6 @@
 import MonthDayCard from './MonthDayCard';
-import { DAYS_SHORT } from '../constants/moods';
-import { formatDate, isFutureDate } from '../utils/dateUtils';
+import { DAYS_SHORT } from '../../../constants/moods';
+import { formatDate, isFutureDate } from '../../../utils/dateUtils';
 
 export default function MonthOverview({ moods, selectedDate, onDaySelect, getMoodById, monthDates }) {
   const today = formatDate(new Date());

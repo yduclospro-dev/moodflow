@@ -2,11 +2,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { TrendingUp } from 'lucide-react';
 
 export default function MoodLineChart({ chartData, getMoodById, isDark }) {
-  // Fonction pour afficher le dot seulement si la valeur existe
   const renderDot = (props) => {
     const { cx, cy, payload } = props;
     if (!payload.humeur || payload.humeur === 0) {
-      return null; // Pas de dot si pas d'humeur
+      return null;
     }
     return (
       <circle cx={cx} cy={cy} r={4} key={payload.name} fill="#8b5cf6" />

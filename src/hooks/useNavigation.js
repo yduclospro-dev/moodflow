@@ -1,8 +1,5 @@
 import { useState } from 'react';
 
-/**
- * Custom hook for managing navigation state and transitions
- */
 export function useNavigation() {
   const [currentView, setCurrentView] = useState('week');
   const [weekOffset, setWeekOffset] = useState(0);

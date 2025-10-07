@@ -1,5 +1,3 @@
-import { Heart } from 'lucide-react';
-
 export default function Header() {
   return (
     <header className="text-center mb-6 px-4">

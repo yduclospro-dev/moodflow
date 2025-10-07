@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useMoodData } from '../hooks/useMoodData';
-import { quotes } from '../constants/quotes';
+import { useMoodData } from '../../hooks/useMoodData';
+import { quotes } from '../../constants/quotes';
 
 const getDayName = (date) => {
   const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
@@ -12,7 +12,7 @@ const defaultQuote = {
   author: ""
 };
 
-const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
+export default function DailyQuote({ selectedDate: propSelectedDate, moods: propMoods }) {
   const hook = useMoodData();
   const effectiveMoods = propMoods || hook.moods;
   const [currentQuote, setCurrentQuote] = useState(defaultQuote);
@@ -46,7 +46,7 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
 
       setCurrentQuote(quotes[dayName][moodKey]);
     } catch (error) {
-      console.error('Erreur dans QuoteOTD:', error);
+      console.error('Erreur dans DailyQuote:', error);
       setCurrentQuote(defaultQuote);
     }
   }, [propSelectedDate, propMoods, hook.moods]);
@@ -95,5 +95,3 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
     </div>
   );
 };
-
-export default QuoteOTD;

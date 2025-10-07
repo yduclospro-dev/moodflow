@@ -7,7 +7,6 @@ export function getMoodById(id) {
 export function getChartData(moods, dates, formatDate) {
   if (!dates || dates.length === 0) return [];
   
-  // Pour la vue semaine
   if (dates.length === 7) {
     return dates.map((date, index) => {
       const dateKey = formatDate(date);
@@ -19,7 +18,6 @@ export function getChartData(moods, dates, formatDate) {
     });
   }
   
-  // Pour la vue mois - ne prendre que les dates valides
   const validDates = dates.filter(d => d !== null);
   return validDates.map((date) => {
     const dateKey = formatDate(date);

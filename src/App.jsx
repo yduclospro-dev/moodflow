@@ -1,13 +1,13 @@
-import Header from './components/Header';
-import ViewToggle from './components/ViewToggle';
-import WeekNavigation from './components/WeekNavigation';
-import MonthNavigation from './components/MonthNavigation';
-import WeekOverview from './components/WeekOverview';
-import MonthOverview from './components/MonthOverview';
-import MoodSelectionModal from './components/MoodSelectionModal';
-import StatisticsSection from './components/StatisticsSection';
-import DarkModeToggle from './components/DarkModeToggle';
-import QuoteOTD from './components/QuoteOTD';
+import Header from './components/global/Header';
+import ViewToggle from './components/calendar/navigation/ViewToggle';
+import WeekNavigation from './components/calendar/navigation/WeekNavigation';
+import MonthNavigation from './components/calendar/navigation/MonthNavigation';
+import WeekOverview from './components/calendar/views/WeekOverview';
+import MonthOverview from './components/calendar/views/MonthOverview';
+import MoodSelectionModal from './components/mood/MoodSelectionModal';
+import StatisticsSection from './components/analytics/StatisticsSection';
+import DarkModeToggle from './components/global/DarkModeToggle';
+import DailyQuote from './components/global/DailyQuote';
 import { useMoodData } from './hooks/useMoodData';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useNavigation } from './hooks/useNavigation';
@@ -48,11 +48,9 @@ export default function App() {
   const weekRange = getWeekRange(weekDates);
   const monthName = getMonthName(monthOffset);
 
-  // Dynamic background based on last selected mood
   const currentMood = lastMoodId ? MOODS.find(m => m.id === lastMoodId) : null;
-
   const currentDates = currentView === 'week' ? weekDates : monthDates;
-
+  
   return (
     <div 
       className="min-h-screen pb-8 transition-all duration-700 ease-in-out"
@@ -131,7 +129,7 @@ export default function App() {
         />
 
         <div className="px-4 mt-6">
-          <QuoteOTD selectedDate={activeDate} moods={moods} />
+          <DailyQuote selectedDate={activeDate} moods={moods} />
         </div>
       </div>
     </div>

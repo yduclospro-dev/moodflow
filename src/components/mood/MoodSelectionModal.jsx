@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import MoodButton from './MoodButton';
-import { MOODS } from '../constants/moods';
+import { MOODS } from '../../constants/moods';
 
 export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, onMoodSelect, onClose }) {
   useEffect(() => {

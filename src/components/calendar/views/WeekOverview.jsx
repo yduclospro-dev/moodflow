@@ -1,6 +1,6 @@
 import DayCard from './DayCard';
-import { DAYS_SHORT } from '../constants/moods';
-import { formatDisplayDate, formatDate, isFutureDate } from '../utils/dateUtils';
+import { DAYS_SHORT } from '../../../constants/moods';
+import { formatDisplayDate, formatDate, isFutureDate } from '../../../utils/dateUtils';
 
 export default function WeekOverview({ moods, selectedDate, onDaySelect, getMoodById, weekDates }) {
   const today = formatDate(new Date());

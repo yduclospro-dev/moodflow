@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { isFutureDate } from '../utils/dateUtils';
 
-/**
- * Custom hook for managing mood selection modal
- */
 export function useMoodModal() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeDate, setActiveDate] = useState(new Date().toISOString().split('T')[0]);
@@ -25,7 +22,6 @@ export function useMoodModal() {
     const date = new Date(dateKey);
     if (!isFutureDate(date)) {
       updateMood(dateKey, moodId);
-      // Fermer la modal immédiatement après la sélection
       setActiveDate(dateKey);
       setIsModalOpen(false);
       setLastMoodId(moodId);
