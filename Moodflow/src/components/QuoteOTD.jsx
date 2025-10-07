@@ -77,7 +77,7 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
         {/* bloc texte principal */}
         <div className="flex-1">
           {/* conteneur centré visuellement */}
-          <div className="inline-block mx-auto pr-10">
+          <div className="inline-block mx-auto pr-14">
             <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-100 text-left">
               La citation du jour
             </h2>
