@@ -13,20 +13,17 @@ const defaultQuote = {
 };
 
 const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
-  // fallback to hook-based moods if no prop provided
   const hook = useMoodData();
   const effectiveMoods = propMoods || hook.moods;
   const [currentQuote, setCurrentQuote] = useState(defaultQuote);
 
   useEffect(() => {
     try {
-      // Si pas de date sélectionnée, utiliser la date du jour
       const effectiveDate = propSelectedDate || new Date().toISOString().split('T')[0];
       const date = new Date(effectiveDate);
       const moodId = effectiveMoods ? effectiveMoods[effectiveDate] : undefined;
       const dayName = getDayName(date);
 
-      // Si pas d'humeur enregistrée pour cette date
       if (!moodId) {
         setCurrentQuote(defaultQuote);
         return;
@@ -42,13 +39,11 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
 
       const moodKey = moodMap[moodId];
 
-      // Vérifier que l'humeur est valide et qu'une citation existe
       if (!moodKey || !quotes[dayName] || !quotes[dayName][moodKey]) {
         setCurrentQuote(defaultQuote);
         return;
       }
 
-      // Mettre à jour la citation
       setCurrentQuote(quotes[dayName][moodKey]);
     } catch (error) {
       console.error('Erreur dans QuoteOTD:', error);
@@ -59,7 +54,6 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 mb-4 sm:mb-6">
       <div className="flex items-start gap-4">
-        {/* icône à gauche */}
         <div className="flex-shrink-0 mt-1 w-10">
           <svg
             className="w-10 h-10 text-indigo-500 dark:text-indigo-400 opacity-95"
@@ -74,9 +68,7 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
           </svg>
         </div>
 
-        {/* bloc texte principal */}
         <div className="flex-1">
-          {/* conteneur centré visuellement */}
           <div className="inline-block mx-auto pr-14">
             <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-100 text-left">
               La citation du jour
@@ -92,7 +84,6 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
             </div>
           </div>
 
-          {/* auteur bien collé à droite */}
           {currentQuote.author && (
             <div className="text-indigo-600 dark:text-indigo-300 text-right font-semibold">
               — {currentQuote.author}

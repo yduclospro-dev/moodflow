@@ -1,4 +1,3 @@
-// Objet contenant toutes les citations organisées par jour et par humeur
 export const quotes = {
   monday: {
     excellent: {
