@@ -8,6 +8,7 @@ import MonthOverview from './components/MonthOverview';
 import MoodSelectionModal from './components/MoodSelectionModal';
 import StatisticsSection from './components/StatisticsSection';
 import DarkModeToggle from './components/DarkModeToggle';
+import QuoteOTD from './components/QuoteOTD';
 import { useMoodData } from './hooks/useMoodData';
 import { useDarkMode } from './hooks/useDarkMode';
 import { getMoodById, getChartData, getPieData } from './utils/moodCalculations';
@@ -18,6 +19,7 @@ export default function App() {
   const { moods, updateMood } = useMoodData();
   const { isDark, toggle } = useDarkMode();
   const [selectedDate, setSelectedDate] = useState(null);
+  const [activeDate, setActiveDate] = useState(new Date().toISOString().split('T')[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentView, setCurrentView] = useState('week');
   const [weekOffset, setWeekOffset] = useState(0);
@@ -31,6 +33,7 @@ export default function App() {
   const handleDaySelect = (dateKey) => {
     if (dateKey) {
       setSelectedDate(dateKey);
+      setActiveDate(dateKey);
       setIsModalOpen(true);
     } else {
       setSelectedDate(null);
@@ -42,6 +45,9 @@ export default function App() {
     const date = new Date(dateKey);
     if (!isFutureDate(date)) {
       updateMood(dateKey, moodId);
+      // Fermer la modal immédiatement après la sélection pour une expérience
+      // où le clic sur une humeur applique la modification et ferme l'overlay.
+      setActiveDate(dateKey);
       setIsModalOpen(false);
       setSelectedDate(null);
     }
@@ -151,6 +157,10 @@ export default function App() {
           getMoodById={getMoodById}
           isDark={isDark}
         />
+
+        <div className="px-4 mt-6">
+          <QuoteOTD selectedDate={activeDate} moods={moods} />
+        </div>
       </div>
     </div>
   );

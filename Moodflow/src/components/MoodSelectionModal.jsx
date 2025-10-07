@@ -39,6 +39,7 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
 
   const handleMoodClick = (moodId) => {
     onMoodSelect(selectedDate, moodId);
+    // Ne pas fermer automatiquement pour permettre de changer d'avis
   };
 
   return (
@@ -75,22 +76,13 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
                 mood={mood}
                 isSelected={currentMood === mood.id}
                 onSelect={handleMoodClick}
+                immediateUpdate={true}
               />
             ))}
           </div>
         </div>
 
-        {/* Footer */}
-        {currentMood && (
-          <div className="sticky bottom-0 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6">
-            <button
-              onClick={onClose}
-              className="w-full sm:w-auto sm:min-w-[200px] sm:mx-auto sm:block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
-            >
-              Valider
-            </button>
-          </div>
-        )}
+        {/* Footer intentionally removed: selection immédiate sur clic d'une humeur */}
       </div>
     </div>
   );
