@@ -10,7 +10,7 @@ export default function MoodLineChart({ chartData, getMoodById, isDark }) {
       return null; // Pas de dot si pas d'humeur
     }
     return (
-      <circle cx={cx} cy={cy} r={4} fill="#8b5cf6" />
+      <circle cx={cx} cy={cy} r={4} key={payload.name} fill="#8b5cf6" />
     );
   };
 
