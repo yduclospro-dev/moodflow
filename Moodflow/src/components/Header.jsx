@@ -10,7 +10,7 @@ export default function Header() {
           Mon Humeur
         </h1>
       </div>
-      <p className="text-sm sm:text-base text-gray-600">Suivez votre bien-être au quotidien</p>
+      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Suivez votre bien-être au quotidien</p>
     </header>
   );
 }

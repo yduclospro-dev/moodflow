@@ -6,7 +6,7 @@ export default function MoodButton({ mood, isSelected, onSelect }) {
   return (
     <button
       onClick={() => onSelect(mood.id)}
-      className="p-3 sm:p-4 rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-lg"
+      className="p-3 sm:p-4 rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-lg dark:hover:shadow-gray-700"
       style={{
         backgroundColor: `${mood.color}15`,
         border: isSelected ? `3px solid ${mood.color}` : 'none'

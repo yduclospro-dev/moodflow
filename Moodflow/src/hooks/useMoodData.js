@@ -1,4 +1,3 @@
-// src/hooks/useMoodData.js
 import { useState, useEffect } from 'react';
 
 export function useMoodData() {
@@ -19,13 +18,12 @@ export function useMoodData() {
     localStorage.setItem('moodTrackerData', JSON.stringify(moods));
   }, [moods]);
 
-  const updateMood = (dayIndex, moodId) => {
+  const updateMood = (dateKey, moodId) => {
     setMoods(prev => ({
       ...prev,
-      [dayIndex]: moodId
+      [dateKey]: moodId
     }));
   };
 
   return { moods, updateMood };
 }
-

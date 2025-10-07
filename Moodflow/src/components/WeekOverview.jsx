@@ -1,22 +1,30 @@
 import React from 'react';
 import DayCard from './DayCard';
-import { DAYS } from '../constants/moods';
+import { DAYS_SHORT } from '../constants/moods';
+import { formatDisplayDate, formatDate } from '../utils/dateUtils';
 
-export default function WeekOverview({ moods, selectedDay, onDaySelect, getMoodById }) {
+export default function WeekOverview({ moods, selectedDate, onDaySelect, getMoodById, weekDates }) {
+  const today = formatDate(new Date());
+  
   return (
-    <section className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-4 sm:mb-6 transition-all">
-      <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">Ma Semaine</h2>
+    <section className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 mb-4 sm:mb-6 transition-all">
       <div className="grid grid-cols-7 gap-2 sm:gap-3">
-        {DAYS.map((day, index) => (
-          <DayCard
-            key={index}
-            day={day}
-            dayIndex={index}
-            mood={getMoodById(moods[index])}
-            isSelected={selectedDay === index}
-            onSelect={(idx) => onDaySelect(selectedDay === idx ? null : idx)}
-          />
-        ))}
+        {weekDates.map((date, index) => {
+          const dateKey = formatDate(date);
+          const isToday = dateKey === today;
+          
+          return (
+            <DayCard
+              key={dateKey}
+              day={DAYS_SHORT[index]}
+              date={formatDisplayDate(date)}
+              mood={getMoodById(moods[dateKey])}
+              isSelected={selectedDate === dateKey}
+              isToday={isToday}
+              onSelect={() => onDaySelect(selectedDate === dateKey ? null : dateKey)}
+            />
+          );
+        })}
       </div>
     </section>
   );

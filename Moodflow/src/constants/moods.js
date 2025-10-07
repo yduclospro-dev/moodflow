@@ -8,4 +8,4 @@ export const MOODS = [
   { id: 5, name: 'Difficile', icon: Angry, color: '#991b1b', emoji: '😢' }
 ];
 
-export const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+export const DAYS_SHORT = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
