@@ -8,12 +8,12 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
     const handleEscape = (e) => {
       if (e.key === 'Escape') onClose();
     };
-    
+
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
-    
+
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
@@ -23,9 +23,9 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
   if (!isOpen || !selectedDate) return null;
 
   const date = new Date(selectedDate);
-  const dateStr = date.toLocaleDateString('fr-FR', { 
-    weekday: 'long', 
-    day: 'numeric', 
+  const dateStr = date.toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
     month: 'long',
     year: 'numeric'
   });
@@ -49,7 +49,7 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fade-in"
       onClick={handleBackdropClick}
     >
