@@ -23,7 +23,7 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
       // Si pas de date sélectionnée, utiliser la date du jour
       const effectiveDate = propSelectedDate || new Date().toISOString().split('T')[0];
       const date = new Date(effectiveDate);
-      const moodId = effectiveMoods[effectiveDate];
+      const moodId = effectiveMoods ? effectiveMoods[effectiveDate] : undefined;
       const dayName = getDayName(date);
 
       // Si pas d'humeur enregistrée pour cette date
@@ -57,18 +57,50 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
   }, [propSelectedDate, propMoods, hook.moods]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-        La citation du jour
-      </h2>
-      <div className="text-gray-600 dark:text-gray-300 mb-4 italic">
-        "{currentQuote.quote}"
-      </div>
-      {currentQuote.author && (
-        <div className="text-gray-500 dark:text-gray-400 text-right">
-          — {currentQuote.author}
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 mb-4 sm:mb-6">
+      <div className="flex items-start gap-4">
+        {/* icône à gauche */}
+        <div className="flex-shrink-0 mt-1 w-10">
+          <svg
+            className="w-10 h-10 text-indigo-500 dark:text-indigo-400 opacity-95"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M9.2 7.5C9.2 5.1 11.1 3 13.5 3v6.5H9.2V7.5zM3.2 7.5C3.2 5.1 5.1 3 7.5 3v6.5H3.2V7.5z"
+              fill="currentColor"
+            />
+          </svg>
         </div>
-      )}
+
+        {/* bloc texte principal */}
+        <div className="flex-1">
+          {/* conteneur centré visuellement */}
+          <div className="inline-block mx-auto pr-10">
+            <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 dark:text-gray-100 text-left">
+              La citation du jour
+            </h2>
+
+            <div className="mb-4">
+              <p
+                className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg sm:text-base lg:text-lg italic bg-gradient-to-r from-transparent via-indigo-50/40 to-transparent dark:via-indigo-900/20 py-3 rounded text-left"
+                style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}
+              >
+                "{currentQuote.quote}"
+              </p>
+            </div>
+          </div>
+
+          {/* auteur bien collé à droite */}
+          {currentQuote.author && (
+            <div className="text-indigo-600 dark:text-indigo-300 text-right font-semibold">
+              — {currentQuote.author}
+            </div>
+          )}
+        </div>
+      </div>
+
     </div>
   );
 };
