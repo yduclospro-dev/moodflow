@@ -5,7 +5,7 @@ export default function DayCard({ day, date, mood, isSelected, onSelect, isToday
     <button
       onClick={onSelect}
       disabled={isFuture}
-      className={`relative p-3 sm:p-4 rounded-xl transition-all duration-300 transform ${
+      className={`relative p-1 sm:p-4 rounded-xl transition-all duration-300 transform ${
         isFuture 
           ? 'cursor-not-allowed opacity-40' 
           : 'active:scale-95'
@@ -22,10 +22,10 @@ export default function DayCard({ day, date, mood, isSelected, onSelect, isToday
     >
       <div className="text-center">
         <div className="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">{day}</div>
-        <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">{date}</div>
+        <div className="text-xs text-gray-500 dark:text-gray-400">{date}</div>
         {mood ? (
           <>
-            <div className="text-2xl sm:text-3xl mb-1">{mood.emoji}</div>
+            <div className="text-2xl sm:text-3xl">{mood.emoji}</div>
             <div className="text-xs font-medium mt-1 hidden sm:block" style={{ color: mood.color }}>
               {mood.name}
             </div>

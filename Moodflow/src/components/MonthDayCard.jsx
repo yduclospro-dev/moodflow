@@ -11,7 +11,7 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
     <button
       onClick={onSelect}
       disabled={isFuture}
-      className={`relative aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 transform ${
+      className={`relative max-sm:h-16 sm:aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 transform ${
         isFuture 
           ? 'cursor-not-allowed opacity-40' 
           : 'active:scale-95 hover:shadow-md'
@@ -27,7 +27,7 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
       } : {}}
     >
       <div className="flex flex-col items-center justify-center h-full">
-        <div className={`text-xs sm:text-sm font-medium mb-1 ${
+        <div className={`text-xs sm:text-sm font-medium  ${
           isToday 
             ? 'text-pink-600 dark:text-pink-400 font-bold' 
             : 'text-gray-600 dark:text-gray-300'
@@ -35,7 +35,12 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
           {day}
         </div>
         {mood && (
-          <div className="text-lg sm:text-2xl">{mood.emoji}</div>
+          <>
+            <div className="text-2xl sm:text-3xl">{mood.emoji}</div>
+            <div className="text-xs font-medium mt-1 hidden sm:block" style={{ color: mood.color }}>
+              {mood.name}
+            </div>
+          </>
         )}
       </div>
       {isToday && (
