@@ -1,10 +1,15 @@
 import React from 'react';
 
-export default function DayCard({ day, date, mood, isSelected, onSelect, isToday }) {
+export default function DayCard({ day, date, mood, isSelected, onSelect, isToday, isFuture }) {
   return (
     <button
       onClick={onSelect}
-      className={`relative p-3 sm:p-4 rounded-xl transition-all duration-300 transform active:scale-95 ${
+      disabled={isFuture}
+      className={`relative p-3 sm:p-4 rounded-xl transition-all duration-300 transform ${
+        isFuture 
+          ? 'cursor-not-allowed opacity-40' 
+          : 'active:scale-95'
+      } ${
         mood 
           ? 'bg-gradient-to-br shadow-md hover:shadow-lg' 
           : 'bg-gray-50 dark:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600'

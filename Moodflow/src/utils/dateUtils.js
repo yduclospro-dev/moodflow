@@ -39,3 +39,11 @@ export function getWeekRange(dates) {
   }
   return `${first.getDate()} ${firstMonth} - ${last.getDate()} ${lastMonth}`;
 }
+
+export function isFutureDate(date) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset à minuit
+  const compareDate = new Date(date);
+  compareDate.setHours(0, 0, 0, 0);
+  return compareDate > today;
+}

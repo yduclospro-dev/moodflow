@@ -8,7 +8,7 @@ import DarkModeToggle from './components/DarkModeToggle';
 import { useMoodData } from './hooks/useMoodData';
 import { useDarkMode } from './hooks/useDarkMode';
 import { getMoodById, getChartData, getPieData } from './utils/moodCalculations';
-import { getWeekDates, formatDate, getWeekRange } from './utils/dateUtils';
+import { getWeekDates, formatDate, getWeekRange, isFutureDate } from './utils/dateUtils';
 import './index.css';
 
 export default function App() {
@@ -21,8 +21,12 @@ export default function App() {
   const weekRange = getWeekRange(weekDates);
 
   const handleMoodSelect = (dateKey, moodId) => {
-    updateMood(dateKey, moodId);
-    setSelectedDate(null);
+    // Vérifier si la date n'est pas dans le futur
+    const date = new Date(dateKey);
+    if (!isFutureDate(date)) {
+      updateMood(dateKey, moodId);
+      setSelectedDate(null);
+    }
   };
 
   const goToPreviousWeek = () => {

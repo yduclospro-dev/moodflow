@@ -1,7 +1,7 @@
 import React from 'react';
 import DayCard from './DayCard';
 import { DAYS_SHORT } from '../constants/moods';
-import { formatDisplayDate, formatDate } from '../utils/dateUtils';
+import { formatDisplayDate, formatDate, isFutureDate } from '../utils/dateUtils';
 
 export default function WeekOverview({ moods, selectedDate, onDaySelect, getMoodById, weekDates }) {
   const today = formatDate(new Date());
@@ -12,6 +12,7 @@ export default function WeekOverview({ moods, selectedDate, onDaySelect, getMood
         {weekDates.map((date, index) => {
           const dateKey = formatDate(date);
           const isToday = dateKey === today;
+          const isFuture = isFutureDate(date);
           
           return (
             <DayCard
@@ -21,7 +22,8 @@ export default function WeekOverview({ moods, selectedDate, onDaySelect, getMood
               mood={getMoodById(moods[dateKey])}
               isSelected={selectedDate === dateKey}
               isToday={isToday}
-              onSelect={() => onDaySelect(selectedDate === dateKey ? null : dateKey)}
+              isFuture={isFuture}
+              onSelect={() => !isFuture && onDaySelect(selectedDate === dateKey ? null : dateKey)}
             />
           );
         })}
