@@ -11,7 +11,6 @@ export function useMoodData() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        console.log('Données chargées:', parsed);
         setMoods(parsed);
       } catch (e) {
         console.error('Error loading data:', e);
@@ -23,7 +22,6 @@ export function useMoodData() {
   // Sauvegarder les données à chaque changement (mais pas au premier chargement)
   useEffect(() => {
     if (isLoaded) {
-      console.log('Sauvegarde des données:', moods);
       localStorage.setItem('moodTrackerData', JSON.stringify(moods));
     }
   }, [moods, isLoaded]);
@@ -34,7 +32,7 @@ export function useMoodData() {
         ...prev,
         [dateKey]: moodId
       };
-      console.log('Mise à jour:', dateKey, moodId, newMoods);
+
       return newMoods;
     });
   };
