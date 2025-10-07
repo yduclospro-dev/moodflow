@@ -76,7 +76,7 @@ const QuoteOTD = ({ selectedDate: propSelectedDate, moods: propMoods }) => {
 
             <div className="mb-4">
               <p
-                className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg sm:text-base lg:text-lg italic bg-gradient-to-r from-transparent via-indigo-50/40 to-transparent dark:via-indigo-900/20 py-3 rounded text-left"
+                className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg sm:text-base lg:text-lg italic from-transparent via-indigo-50/40 to-transparent dark:via-indigo-900/20 py-3 rounded text-left"
                 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}
               >
                 "{currentQuote.quote}"
