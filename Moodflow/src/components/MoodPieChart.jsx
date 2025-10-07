@@ -28,6 +28,7 @@ export default function MoodPieChart({ pieData, isDark }) {
               fill: isDark ? '#f3f4f6' : '#000',
               fontSize: 12
             }}
+            stroke="none"
           >
             {pieData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />
@@ -38,6 +39,9 @@ export default function MoodPieChart({ pieData, isDark }) {
               backgroundColor: isDark ? '#1f2937' : '#fff',
               border: `1px solid ${isDark ? '#374151' : '#ddd'}`,
               borderRadius: '8px',
+              color: isDark ? '#f3f4f6' : '#000'
+            }}
+            itemStyle={{
               color: isDark ? '#f3f4f6' : '#000'
             }}
           />
