@@ -44,7 +44,6 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
   const handleDelete = () => {
     onMoodSelect(selectedDate, null);
     onClose();
-
   };
 
   return (

@@ -63,7 +63,6 @@ export default function Home() {
   const currentMood = backgroundMoodId ? MOODS.find(m => m.id === backgroundMoodId) : null;
   const currentDates = currentView === 'week' ? weekDates : monthDates;
   
-  // Determine animation class based on slide direction and transition state
   const getAnimationClass = () => {
     if (!isTransitioning) {
       return 'opacity-100 transform translate-x-0';
@@ -74,7 +73,6 @@ export default function Home() {
     } else if (slideDirection === 'right') {
       return 'opacity-0 transform translate-x-[100px]';
     } else {
-      // For view toggle
       return 'opacity-0 transform translate-x-[-20px]';
     }
   };
