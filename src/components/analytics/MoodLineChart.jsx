@@ -2,42 +2,12 @@ import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
 import { MOODS } from '../../constants/moods';
-import { MOODS } from '../../constants/moods';
 
 export default function MoodLineChart({ chartData, getMoodById, isDark }) {
   const [isCollapsed, setIsCollapsed] = useState(() => {
     const saved = localStorage.getItem('moodChartCollapsed');
     return saved ? JSON.parse(saved) : false;
   });
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
-
-  const getMoodLabel = (value) => {
-    if (isMobile) {
-      const mood = MOODS.find(m => m.id === value);
-      return mood ? mood.emoji : '';
-    } else {
-      const moodLabels = {
-        1: 'Difficile',
-        2: 'Pas terrible',
-        3: 'Neutre',
-        4: 'Bien',
-        5: 'Excellent'
-      };
-      return moodLabels[value] || '';
-    }
-  };
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -115,7 +85,6 @@ export default function MoodLineChart({ chartData, getMoodById, isDark }) {
       >
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={chartData} margin={{ right: 10, top: 5, bottom: 5 }}>
-          <LineChart data={chartData} margin={{ right: 10, top: 5, bottom: 5 }}>
             <CartesianGrid
               strokeDasharray="3 3"
               stroke={isDark ? '#4b5563' : '#f0f0f0'}
@@ -131,8 +100,6 @@ export default function MoodLineChart({ chartData, getMoodById, isDark }) {
               interval={0}
               tickFormatter={getMoodLabel}
               stroke={isDark ? '#9ca3af' : '#888'}
-              style={{ fontSize: isMobile ? '16px' : '11px' }}
-              width={isMobile ? 30 : 80}
               style={{ fontSize: isMobile ? '16px' : '11px' }}
               width={isMobile ? 30 : 80}
             />
