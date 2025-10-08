@@ -3,7 +3,7 @@ export default function Header() {
     <header className="text-center mb-6 px-4">
       <div className="flex items-center justify-center mb-2">
         <img 
-          src="/assets/moodflow-logo.png" 
+          src="/moodflow-logo.png" 
           alt="MoodFlow" 
           className="h-12 sm:h-16 w-auto transition-all duration-300 dark:invert"
         />
