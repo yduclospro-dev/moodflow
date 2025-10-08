@@ -8,6 +8,7 @@ import MoodSelectionModal from '../components/mood/MoodSelectionModal';
 import StatisticsSection from '../components/analytics/StatisticsSection';
 import DarkModeToggle from '../components/global/DarkModeToggle';
 import DailyQuote from '../components/global/DailyQuote';
+import NotificationManager from '../components/notification/NotificationManager';
 import { useMoodData } from '../hooks/useMoodData';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useNavigation } from '../hooks/useNavigation';
@@ -142,6 +143,8 @@ export default function Home() {
         <div className="px-4 mt-6">
           <DailyQuote selectedDate={activeDate} moods={moods} />
         </div>
+
+        <NotificationManager />
       </div>
     </div>
   );
