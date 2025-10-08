@@ -81,7 +81,7 @@ export default function Home() {
   
   return (
     <div 
-      className="min-h-screen pb-8 transition-all duration-700 ease-in-out"
+      className="min-h-screen pb-8"
       style={getBackgroundStyle(currentMood, isDark)}
     >
       <DarkModeToggle isDark={isDark} onToggle={toggle} />
