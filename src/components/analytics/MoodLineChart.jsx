@@ -64,7 +64,7 @@ export default function MoodLineChart({ chartData, getMoodById, isDark }) {
       >
         <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center">
           <TrendingUp className="w-5 h-5 mr-2 text-purple-500" />
-          Évolution de la semaine
+          Évolution de l'humeur
         </h3>
         <button
           className="text-gray-500 dark:text-gray-400 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
