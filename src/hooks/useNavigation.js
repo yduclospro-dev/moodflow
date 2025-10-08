@@ -5,6 +5,7 @@ export function useNavigation() {
   const [weekOffset, setWeekOffset] = useState(0);
   const [monthOffset, setMonthOffset] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideDirection, setSlideDirection] = useState('none'); // 'left', 'right', or 'none'
 
   const handleViewChange = (view) => {
     setCurrentView(view);
@@ -13,6 +14,7 @@ export function useNavigation() {
   const handleViewChangeWithTransition = (view) => {
     if (view !== currentView) {
       setIsTransitioning(true);
+      setSlideDirection('none');
       setTimeout(() => {
         handleViewChange(view);
         setTimeout(() => setIsTransitioning(false), 50);
@@ -21,26 +23,54 @@ export function useNavigation() {
   };
 
   const goToPreviousWeek = (resetSelection) => {
-    setWeekOffset(prev => prev - 1);
-    if (resetSelection) resetSelection();
+    setSlideDirection('right');
+    setIsTransitioning(true);
+    
+    setTimeout(() => {
+      setWeekOffset(prev => prev - 1);
+      setSlideDirection('none');
+      setTimeout(() => setIsTransitioning(false), 50);
+      if (resetSelection) resetSelection();
+    }, 300);
   };
 
   const goToNextWeek = (resetSelection) => {
     if (weekOffset < 0) {
-      setWeekOffset(prev => prev + 1);
-      if (resetSelection) resetSelection();
+      setSlideDirection('left');
+      setIsTransitioning(true);
+      
+      setTimeout(() => {
+        setWeekOffset(prev => prev + 1);
+        setSlideDirection('none');
+        setTimeout(() => setIsTransitioning(false), 50);
+        if (resetSelection) resetSelection();
+      }, 300);
     }
   };
 
   const goToPreviousMonth = (resetSelection) => {
-    setMonthOffset(prev => prev - 1);
-    if (resetSelection) resetSelection();
+    setSlideDirection('right');
+    setIsTransitioning(true);
+    
+    setTimeout(() => {
+      setMonthOffset(prev => prev - 1);
+      setSlideDirection('none');
+      setTimeout(() => setIsTransitioning(false), 50);
+      if (resetSelection) resetSelection();
+    }, 300);
   };
 
   const goToNextMonth = (resetSelection) => {
     if (monthOffset < 0) {
-      setMonthOffset(prev => prev + 1);
-      if (resetSelection) resetSelection();
+      setSlideDirection('left');
+      setIsTransitioning(true);
+      
+      setTimeout(() => {
+        setMonthOffset(prev => prev + 1);
+        setSlideDirection('none');
+        setTimeout(() => setIsTransitioning(false), 50);
+        if (resetSelection) resetSelection();
+      }, 300);
     }
   };
 
@@ -49,6 +79,7 @@ export function useNavigation() {
     weekOffset,
     monthOffset,
     isTransitioning,
+    slideDirection,
     handleViewChangeWithTransition,
     goToPreviousWeek,
     goToNextWeek,

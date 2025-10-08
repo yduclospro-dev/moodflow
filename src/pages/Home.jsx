@@ -27,6 +27,7 @@ export default function Home() {
     weekOffset,
     monthOffset,
     isTransitioning,
+    slideDirection,
     handleViewChangeWithTransition,
     goToPreviousWeek,
     goToNextWeek,
@@ -63,6 +64,22 @@ export default function Home() {
   const currentMood = backgroundMoodId ? MOODS.find(m => m.id === backgroundMoodId) : null;
   const currentDates = currentView === 'week' ? weekDates : monthDates;
   
+  // Determine animation class based on slide direction and transition state
+  const getAnimationClass = () => {
+    if (!isTransitioning) {
+      return 'opacity-100 transform translate-x-0';
+    }
+    
+    if (slideDirection === 'left') {
+      return 'opacity-0 transform translate-x-[-100px]';
+    } else if (slideDirection === 'right') {
+      return 'opacity-0 transform translate-x-[100px]';
+    } else {
+      // For view toggle
+      return 'opacity-0 transform translate-x-[-20px]';
+    }
+  };
+  
   return (
     <div 
       className="min-h-screen pb-8 transition-all duration-700 ease-in-out"
@@ -75,55 +92,53 @@ export default function Home() {
         
         <ViewToggle currentView={currentView} onViewChange={handleViewChangeWithTransition} />
         
-        <div className="relative overflow-hidden">
-          <div 
-            className={`transition-all duration-300 ease-in-out ${
-              isTransitioning 
-                ? 'opacity-0 transform translate-x-[-20px]' 
-                : 'opacity-100 transform translate-x-0'
-            }`}
-          >
-            {currentView === 'week' ? (
-              <>
-                <WeekNavigation
-                  weekOffset={weekOffset}
-                  onPrevious={() => goToPreviousWeek(resetSelection)}
-                  onNext={() => goToNextWeek(resetSelection)}
-                  weekRange={weekRange}
+        {currentView === 'week' ? (
+          <>
+            <WeekNavigation
+              weekOffset={weekOffset}
+              onPrevious={() => goToPreviousWeek(resetSelection)}
+              onNext={() => goToNextWeek(resetSelection)}
+              weekRange={weekRange}
+            />
+            
+            <div className="px-4 mt-4 relative overflow-hidden">
+              <div 
+                className={`transition-all duration-300 ease-in-out ${getAnimationClass()}`}
+              >
+                <WeekOverview 
+                  moods={moods}
+                  selectedDate={selectedDate}
+                  onDaySelect={handleDaySelect}
+                  getMoodById={getMoodById}
+                  weekDates={weekDates}
                 />
-                
-                <div className="px-4 mt-4">
-                  <WeekOverview 
-                    moods={moods}
-                    selectedDate={selectedDate}
-                    onDaySelect={handleDaySelect}
-                    getMoodById={getMoodById}
-                    weekDates={weekDates}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <MonthNavigation
-                  monthOffset={monthOffset}
-                  onPrevious={() => goToPreviousMonth(resetSelection)}
-                  onNext={() => goToNextMonth(resetSelection)}
-                  monthName={monthName}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <MonthNavigation
+              monthOffset={monthOffset}
+              onPrevious={() => goToPreviousMonth(resetSelection)}
+              onNext={() => goToNextMonth(resetSelection)}
+              monthName={monthName}
+            />
+            
+            <div className="px-4 mt-4 relative overflow-hidden">
+              <div 
+                className={`transition-all duration-300 ease-in-out ${getAnimationClass()}`}
+              >
+                <MonthOverview 
+                  moods={moods}
+                  selectedDate={selectedDate}
+                  onDaySelect={handleDaySelect}
+                  getMoodById={getMoodById}
+                  monthDates={monthDates}
                 />
-                
-                <div className="px-4 mt-4">
-                  <MonthOverview 
-                    moods={moods}
-                    selectedDate={selectedDate}
-                    onDaySelect={handleDaySelect}
-                    getMoodById={getMoodById}
-                    monthDates={monthDates}
-                  />
-                </div>
-              </>
-            )}
-          </div>
-        </div>
+              </div>
+            </div>
+          </>
+        )}
 
         <MoodSelectionModal
           isOpen={isModalOpen}
