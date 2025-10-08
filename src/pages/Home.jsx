@@ -16,6 +16,7 @@ import { getMoodById, getChartData, getPieData } from '../utils/moodCalculations
 import { getWeekDates, getMonthDates, formatDate, getWeekRange, getMonthName } from '../utils/dateUtils';
 import { getBackgroundStyle } from '../utils/colorUtils';
 import { MOODS } from '../constants/moods';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const { moods, updateMood } = useMoodData();
@@ -42,12 +43,23 @@ export default function Home() {
     resetSelection
   } = useMoodModal();
 
+  const today = formatDate(new Date());
+  
+  const [backgroundMoodId, setBackgroundMoodId] = useState(() => {
+    return moods[today] || null;
+  });
+
+  useEffect(() => {
+    const todaysMood = moods[today];
+    setBackgroundMoodId(todaysMood || null);
+  }, [moods[today], today]);
+
   const weekDates = getWeekDates(weekOffset);
   const monthDates = getMonthDates(monthOffset);
   const weekRange = getWeekRange(weekDates);
   const monthName = getMonthName(monthOffset);
 
-  const currentMood = lastMoodId ? MOODS.find(m => m.id === lastMoodId) : null;
+  const currentMood = backgroundMoodId ? MOODS.find(m => m.id === backgroundMoodId) : null;
   const currentDates = currentView === 'week' ? weekDates : monthDates;
   
   return (

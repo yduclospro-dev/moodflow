@@ -38,12 +38,11 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
 
   const handleMoodClick = (moodId) => {
     onMoodSelect(selectedDate, moodId);
-
-    onClose(); // Fermer automatiquement après sélection
+    onClose();
   };
 
   const handleDelete = () => {
-    onMoodSelect(selectedDate, null); // Passer null pour supprimer
+    onMoodSelect(selectedDate, null);
     onClose();
 
   };
