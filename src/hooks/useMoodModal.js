@@ -5,7 +5,6 @@ export function useMoodModal() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeDate, setActiveDate] = useState(new Date().toISOString().split('T')[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [lastMoodId, setLastMoodId] = useState(null);
 
   const handleDaySelect = (dateKey) => {
     if (dateKey) {
@@ -24,7 +23,6 @@ export function useMoodModal() {
       updateMood(dateKey, moodId);
       setActiveDate(dateKey);
       setIsModalOpen(false);
-      setLastMoodId(moodId);
       setSelectedDate(null);
     }
   };
@@ -43,7 +41,6 @@ export function useMoodModal() {
     selectedDate,
     activeDate,
     isModalOpen,
-    lastMoodId,
     handleDaySelect,
     handleMoodSelect,
     handleModalClose,

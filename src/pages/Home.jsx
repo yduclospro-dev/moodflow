@@ -38,7 +38,6 @@ export default function Home() {
     selectedDate,
     activeDate,
     isModalOpen,
-    lastMoodId,
     handleDaySelect,
     handleMoodSelect,
     handleModalClose,
