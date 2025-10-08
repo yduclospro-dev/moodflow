@@ -5,7 +5,7 @@ export default function MonthNavigation({ monthOffset, onPrevious, onNext, month
     <div className="flex items-center justify-between mb-4 px-4">
       <button
         onClick={onPrevious}
-        className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
+        className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 cursor-pointer"
         aria-label="Mois précédent"
       >
         <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
@@ -28,7 +28,7 @@ export default function MonthNavigation({ monthOffset, onPrevious, onNext, month
         className={`p-2 rounded-lg shadow-md transition-all duration-300 ${
           monthOffset === 0
             ? 'bg-gray-200 dark:bg-gray-700 cursor-not-allowed opacity-50'
-            : 'bg-white dark:bg-gray-800 hover:shadow-lg active:scale-95'
+            : 'bg-white dark:bg-gray-800 cursor-pointer hover:shadow-lg active:scale-95'
         }`}
         aria-label="Mois suivant"
       >

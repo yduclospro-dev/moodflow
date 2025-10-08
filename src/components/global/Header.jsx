@@ -8,7 +8,7 @@ export default function Header() {
           className="h-12 sm:h-16 w-auto transition-all duration-300 dark:invert"
         />
       </div>
-      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Suivez votre bien-être au quotidien</p>
+      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Suivez votre bien-être au quotidien</p>
     </header>
   );
 }
