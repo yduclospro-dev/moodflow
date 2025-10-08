@@ -13,14 +13,14 @@ const defaultQuote = {
   isInfo: true
 };
 
-export default function DailyQuote({ selectedDate: propSelectedDate, moods: propMoods }) {
+export default function DailyQuote({ moods: propMoods }) {
   const hook = useMoodData();
   const effectiveMoods = propMoods || hook.moods;
   const [currentQuote, setCurrentQuote] = useState(defaultQuote);
 
   useEffect(() => {
     try {
-      const effectiveDate = propSelectedDate || new Date().toISOString().split('T')[0];
+      const effectiveDate = new Date().toISOString().split('T')[0];
       const date = new Date(effectiveDate);
       const moodId = effectiveMoods ? effectiveMoods[effectiveDate] : undefined;
       const dayName = getDayName(date);
@@ -50,7 +50,7 @@ export default function DailyQuote({ selectedDate: propSelectedDate, moods: prop
       console.error('Erreur dans DailyQuote:', error);
       setCurrentQuote(defaultQuote);
     }
-  }, [propSelectedDate, propMoods, hook.moods]);
+  }, [propMoods, hook.moods]);
 
   const isInfoMessage = currentQuote.isInfo;
 
