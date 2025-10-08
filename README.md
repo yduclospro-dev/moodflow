@@ -5,7 +5,7 @@ Une application de suivi d'humeur moderne et intuitive construite avec React et 
 ## 1. Choix UX
 
 - **Interface simple et intuitive** : La navigation entre la semaine et le mois est claire grâce aux flèches de navigation qui permettent à l'utilisateur de ses humeurs de la semaine dernière.  
-- **Sélection de l’humeur** : Cliquer sur un jour ouvre un modal avec les choix d’émotion représentés par des emojis et des couleurs.  
+- **Sélection de l’humeur** : Cliquer sur un jour ouvre un modal avec les choix d’émotion représentés par des emojis et des couleurs avec la possibilité d'en supprimer si nécessaire.  
 - **Feedback visuel immédiat** : La couleur de fond s’adapte à l’humeur choisie, en version pastel pour ne pas fatiguer les yeux.  
 - **Responsive design** : L’application est utilisable sur mobile, tablette et desktop.  
 - **Dark mode** : Activation/désactivation possible via un toggle pour le confort visuel.
@@ -42,37 +42,6 @@ npm run preview
    - Cliquez sur "New site from Git"
    - Sélectionnez votre repository GitHub `moodflow`
 
-2. **Configuration automatique :**
-   - **Build command :** `npm run build` (déjà configuré dans `netlify.toml`)
-   - **Publish directory :** `dist` (déjà configuré dans `netlify.toml`)
-   - **Node version :** 18 (déjà configuré dans `netlify.toml`)
-
-3. **Déployer :** Cliquez sur "Deploy site"
-
-### Méthode 2 : Déploiement manuel
-
-```bash
-# Build le project
-npm run build
-
-# Installer Netlify CLI (une seule fois)
-npm install -g netlify-cli
-
-# Login Netlify
-netlify login
-
-# Déployer
-netlify deploy --prod --dir=dist
-```
-
-## ⚙️ Configuration pour Netlify
-
-Les fichiers suivants assurent le bon fonctionnement du routage client-side :
-
-- **`netlify.toml`** : Configuration principale Netlify
-- **`public/_redirects`** : Redirection pour React Router
-- **`vite.config.js`** : Configuration du serveur de développement
-
 ## 🎯 Gestion des erreurs 404
 
 L'application inclut une page 404 personnalisée qui :
@@ -87,3 +56,4 @@ L'application inclut une page 404 personnalisée qui :
 - **Tailwind CSS 4** pour le styling
 - **Recharts** pour les graphiques
 - **Lucide React** pour les icônes
+- **hostinger** pour le déploiement
