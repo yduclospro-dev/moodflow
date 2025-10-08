@@ -2,6 +2,23 @@
 
 Une application de suivi d'humeur moderne et intuitive construite avec React et Vite.
 
+## 1. Choix UX
+
+- **Interface simple et intuitive** : La navigation entre la semaine et le mois est claire grâce aux flèches de navigation qui permettent à l'utilisateur de ses humeurs de la semaine dernière.  
+- **Sélection de l’humeur** : Cliquer sur un jour ouvre un modal avec les choix d’émotion représentés par des emojis et des couleurs.  
+- **Feedback visuel immédiat** : La couleur de fond s’adapte à l’humeur choisie, en version pastel pour ne pas fatiguer les yeux.  
+- **Responsive design** : L’application est utilisable sur mobile, tablette et desktop.  
+- **Dark mode** : Activation/désactivation possible via un toggle pour le confort visuel.
+- **Interface Responsive** : Grâce à un responsive complet, le site peut être utilisé sur n'importe quel support. 
+
+## 3. Bonus implémentés
+
+- Thème sombre / clair automatique
+- Vue calendrier mensuelle
+- Génération automatique de phrase résumant la semaine
+- Animation ou effet visuel original (ex: fond de couleur qui varie selon l’humeur moyenne)  
+
+
 ## 🚀 Démarrage rapide
 
 ### Développement local
