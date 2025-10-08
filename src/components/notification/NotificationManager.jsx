@@ -30,7 +30,7 @@ export default function NotificationManager() {
     sendNotification();
   };
   return (
-    <div className="flex justify-center py-8">
+    <div className="flex justify-center pt-4">
       <button
         onClick={sendNotification}
         className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium flex items-center gap-2"
