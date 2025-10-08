@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import { ChevronDown, ChevronUp, PieChart as PieChartIcon } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function MoodPieChart({ pieData, isDark }) {
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    const saved = localStorage.getItem('moodPieCollapsed');
-    return saved ? JSON.parse(saved) : false;
-  });
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('moodPieCollapsed', JSON.stringify(isCollapsed));
-  }, [isCollapsed]);
+    // Add CSS to remove focus outline from chart elements
+    const style = document.createElement('style');
+    style.textContent = `
+      .recharts-surface:focus,
+      .recharts-wrapper:focus,
+      .recharts-sector:focus {
+        outline: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -24,7 +31,10 @@ export default function MoodPieChart({ pieData, isDark }) {
           onClick={toggleCollapse}
         >
           <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center">
-            <PieChartIcon className="w-5 h-5 mr-2 text-purple-500" />
+            <svg className="w-5 h-5 mr-2 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+              <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+            </svg>
             Répartition des humeurs
           </h3>
           <button 
@@ -58,7 +68,10 @@ export default function MoodPieChart({ pieData, isDark }) {
         onClick={toggleCollapse}
       >
         <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center">
-          <PieChartIcon className="w-5 h-5 mr-2 text-purple-500" />
+          <svg className="w-5 h-5 mr-2 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+          </svg>
           Répartition des humeurs
         </h3>
         <button 
