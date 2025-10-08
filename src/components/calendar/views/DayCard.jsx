@@ -24,7 +24,7 @@ export default function DayCard({ day, date, mood, isSelected, onSelect, isToday
         <div className="text-xs text-gray-500 dark:text-gray-400">{date.month}</div>
         {mood ? (
           <>
-            <div className="text-2xl sm:text-3xl">{mood.emoji}</div>
+            <div className="text-lg sm:text-3xl">{mood.emoji}</div>
             <div className="text-xs font-medium mt-1 hidden sm:block" style={{ color: mood.color }}>
               {mood.name}
             </div>

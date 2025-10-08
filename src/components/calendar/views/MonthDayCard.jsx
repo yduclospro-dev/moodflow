@@ -34,7 +34,7 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
         </div>
         {mood && (
           <>
-            <div className="text-2xl sm:text-3xl">{mood.emoji}</div>
+            <div className="text-lg sm:text-3xl">{mood.emoji}</div>
             <div className="text-xs font-medium mt-1 hidden sm:block" style={{ color: mood.color }}>
               {mood.name}
             </div>
