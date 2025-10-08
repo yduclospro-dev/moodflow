@@ -8,8 +8,9 @@ const getDayName = (date) => {
 };
 
 const defaultQuote = {
-  quote: "Merci de renseigner votre humeur du jour pour accéder à la citation du jour personnalisée",
-  author: ""
+  quote: "Merci de renseigner votre humeur du jour pour accéder à la citation personnalisée du jour.",
+  author: "",
+  isInfo: true
 };
 
 export default function DailyQuote({ selectedDate: propSelectedDate, moods: propMoods }) {
@@ -30,11 +31,11 @@ export default function DailyQuote({ selectedDate: propSelectedDate, moods: prop
       }
 
       const moodMap = {
-        1: 'excellent',
-        2: 'good',
+        1: 'terrible',
+        2: 'bad',
         3: 'neutral',
-        4: 'bad',
-        5: 'terrible'
+        4: 'good',
+        5: 'excellent'
       };
 
       const moodKey = moodMap[moodId];
@@ -44,28 +45,51 @@ export default function DailyQuote({ selectedDate: propSelectedDate, moods: prop
         return;
       }
 
-      setCurrentQuote(quotes[dayName][moodKey]);
+      setCurrentQuote({ ...quotes[dayName][moodKey], isInfo: false });
     } catch (error) {
       console.error('Erreur dans DailyQuote:', error);
       setCurrentQuote(defaultQuote);
     }
   }, [propSelectedDate, propMoods, hook.moods]);
 
+  const isInfoMessage = currentQuote.isInfo;
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 mb-4 sm:mb-6">
       <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 mt-1 w-10">
-          <svg
-            className="w-10 h-10 text-indigo-500 dark:text-indigo-400 opacity-95"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M9.2 7.5C9.2 5.1 11.1 3 13.5 3v6.5H9.2V7.5zM3.2 7.5C3.2 5.1 5.1 3 7.5 3v6.5H3.2V7.5z"
-              fill="currentColor"
-            />
-          </svg>
+        <div className="flex-shrink-0 w-10 h-10 self-start mt-0">
+          {isInfoMessage ? (
+            <svg
+              className="w-full h-full text-amber-500 dark:text-amber-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              style={{ display: 'block' }}
+            >
+              <path
+                fill="currentColor"
+                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                style={{ transform: 'scale(0.8)', transformOrigin: 'center' }}
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-full h-full text-indigo-500 dark:text-indigo-400 opacity-95"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              style={{ display: 'block' }}
+            >
+              <path
+                d="M9.2 7.5C9.2 5.1 11.1 3 13.5 3v6.5H9.2V7.5zM3.2 7.5C3.2 5.1 5.1 3 7.5 3v6.5H3.2V7.5z"
+                fill="currentColor"
+                style={{
+                  transform: 'scale(1.2) translate(1.5px, 2px)',
+                  transformOrigin: 'center'
+                }}
+              />
+            </svg>
+          )}
         </div>
 
         <div className="flex-1">
@@ -75,23 +99,28 @@ export default function DailyQuote({ selectedDate: propSelectedDate, moods: prop
             </h2>
 
             <div className="mb-4">
-              <p
-                className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg sm:text-base lg:text-lg italic from-transparent via-indigo-50/40 to-transparent dark:via-indigo-900/20 py-3 rounded text-left"
-                style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}
-              >
-                "{currentQuote.quote}"
-              </p>
+              {isInfoMessage ? (
+                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 text-amber-800 dark:text-amber-300 p-3 rounded-md text-left text-sm sm:text-base font-medium">
+                  {currentQuote.quote}
+                </div>
+              ) : (
+                <p
+                  className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg sm:text-base lg:text-lg italic from-transparent via-indigo-50/40 to-transparent dark:via-indigo-900/20 rounded text-left"
+                  style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}
+                >
+                  "{currentQuote.quote}"
+                </p>
+              )}
             </div>
           </div>
 
-          {currentQuote.author && (
+          {!isInfoMessage && currentQuote.author && (
             <div className="text-indigo-600 dark:text-indigo-300 text-right font-semibold">
               — {currentQuote.author}
             </div>
           )}
         </div>
       </div>
-
     </div>
   );
-};
+}
