@@ -6,7 +6,7 @@ export default function DayCard({ day, date, mood, isSelected, onSelect, isToday
       className={`relative p-1 sm:p-4 rounded-xl transition-all duration-300 transform ${
         isFuture 
           ? 'cursor-not-allowed opacity-40' 
-          : 'active:scale-95'
+          : 'active:scale-95 cursor-pointer'
       } ${
         mood 
           ? 'bg-gradient-to-br shadow-md hover:shadow-lg' 

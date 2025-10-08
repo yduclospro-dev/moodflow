@@ -63,7 +63,7 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
             aria-label="Fermer"
           >
             <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -88,7 +88,7 @@ export default function MoodSelectionModal({ isOpen, selectedDate, currentMood, 
           <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 sm:p-6">
             <button
               onClick={handleDelete}
-              className="w-full sm:w-auto sm:min-w-[200px] sm:mx-auto sm:block px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
+              className="w-full sm:w-auto sm:min-w-[200px] sm:mx-auto sm:block px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 cursor-pointer"
             >
               Supprimer l'humeur
             </button>

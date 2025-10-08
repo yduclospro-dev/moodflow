@@ -12,7 +12,7 @@ export default function MonthDayCard({ date, mood, isSelected, onSelect, isToday
       className={`relative max-sm:h-16 sm:aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 transform ${
         isFuture 
           ? 'cursor-not-allowed opacity-40' 
-          : 'active:scale-95 hover:shadow-md'
+          : 'active:scale-95 hover:shadow-md cursor-pointer'
       } ${
         mood 
           ? 'bg-gradient-to-br shadow-sm' 
